@@ -306,7 +306,8 @@
   },
   "nacs": {
     "actionNeededHeight": 0,
-    "notesHeight": 0
+    "notesHeight": 0,
+    "assign": ""
   },
   "anson0412": {
     "actionNeededHeight": 0,
