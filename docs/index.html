@@ -653,4 +653,85 @@ function attachRowHandlers() {
       const id = el.dataset.id, field = el.dataset.field;
       const heightField = field + "Height";
       let lastSavedHeight = el.style.height ? parseInt(el.style.height, 10) : null;
-      const ro = new ResizeObserver((
+      const ro = new ResizeObserver(() => {
+        const h = parseInt(el.style.height, 10);
+        if (h && h !== lastSavedHeight) {
+          lastSavedHeight = h;
+          updateField(id, heightField, h);
+        }
+      });
+      ro.observe(el);
+    }
+  });
+}
+
+// ---- Toolbar wiring: search, hide-done, backup/restore ----
+document.getElementById("search").addEventListener("input", render);
+document.getElementById("hideDone").addEventListener("change", render);
+
+document.getElementById("backupBtn").addEventListener("click", () => {
+  const blob = new Blob([JSON.stringify(state, null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `vip-tracker-backup-${new Date().toISOString().slice(0, 10)}.json`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+});
+
+document.getElementById("restoreBtn").addEventListener("click", () => {
+  document.getElementById("fileInput").click();
+});
+
+document.getElementById("fileInput").addEventListener("change", async (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  try {
+    const text = await file.text();
+    const restored = JSON.parse(text);
+    if (!restored || typeof restored !== "object") throw new Error("backup file isn't a valid tracker export");
+    if (!confirm("This will overwrite the shared tracker data for everyone with this backup. Continue?")) return;
+    state = restored;
+    cacheState(state);
+    await pushBulkState(state);
+    render();
+    alert("Backup restored.");
+  } catch (err) {
+    alert("Couldn't restore that file: " + err.message);
+  } finally {
+    e.target.value = "";
+  }
+});
+
+document.getElementById("sidePanelClose").addEventListener("click", closeSidePanel);
+document.getElementById("overlay").addEventListener("click", closeSidePanel);
+
+// ---- Initial load + live polling ----
+(async function bootstrap() {
+  try {
+    const live = await fetchLiveState();
+    state = applyPendingToState({ ...live });
+    cacheState(state);
+  } catch (e) {
+    // fall back to whatever's cached locally if the first fetch fails
+  }
+  render();
+  updateSyncBadge();
+})();
+
+setInterval(async () => {
+  if (isUserEditing() || pendingCount() > 0) return;
+  try {
+    const live = await fetchLiveState();
+    state = applyPendingToState({ ...live });
+    cacheState(state);
+    render();
+  } catch (e) {
+    // network hiccup -- just try again next tick
+  }
+}, POLL_MS);
+</script>
+</body>
+</html>
