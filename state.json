@@ -405,7 +405,8 @@
   },
   "Kenley24": {
     "actionNeededHeight": 0,
-    "notesHeight": 0
+    "notesHeight": 0,
+    "assign": ""
   },
   "audi002": {
     "actionNeededHeight": 0,
@@ -478,8 +479,7 @@
   },
   "butangina": {
     "actionNeededHeight": 0,
-    "notesHeight": 0,
-    "assign": ""
+    "notesHeight": 0
   },
   "Jocellyn06": {
     "actionNeededHeight": 0,
