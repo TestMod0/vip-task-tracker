@@ -279,8 +279,7 @@
   },
   "Kim6666": {
     "actionNeededHeight": 0,
-    "notesHeight": 0,
-    "assign": ""
+    "notesHeight": 0
   },
   "lz9999j": {
     "actionNeededHeight": 0,
@@ -306,7 +305,8 @@
   },
   "nacs": {
     "actionNeededHeight": 0,
-    "notesHeight": 0
+    "notesHeight": 0,
+    "assign": ""
   },
   "anson0412": {
     "actionNeededHeight": 0,
