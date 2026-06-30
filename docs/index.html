@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -198,42 +198,16 @@ const GH_OWNER = "TestMod0";
 const GH_REPO = "vip-task-tracker";
 const GH_DATA_BRANCH = "data";
 const GH_DATA_PATH = "state.json";
-const GH_TOKEN = "REPLACE_WITH_FINE_GRAINED_TOKEN";
-
 const RAW_URL = `https://raw.githubusercontent.com/${GH_OWNER}/${GH_REPO}/${GH_DATA_BRANCH}/${GH_DATA_PATH}`;
-const API_CONTENTS_URL = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_DATA_PATH}`;
+const WORKER_URL = "https://vip-tracker-api.testmod0.workers.dev";
 
-function utf8ToBase64(str) {
-  return btoa(unescape(encodeURIComponent(str)));
-}
-
-// Read-merge-write the whole state file under one commit, so one person's
-// edit can't stomp on another's. Needs the current file's sha first --
-// GitHub requires that to update an existing file.
 async function githubWriteState(fullState, message) {
-  let sha;
-  try {
-    const cur = await fetch(API_CONTENTS_URL + "?ref=" + GH_DATA_BRANCH, {
-      headers: { Authorization: "token " + GH_TOKEN, Accept: "application/vnd.github+json" },
-    });
-    if (cur.ok) sha = (await cur.json()).sha;
-  } catch (e) {}
-
-  const res = await fetch(API_CONTENTS_URL, {
-    method: "PUT",
-    headers: {
-      Authorization: "token " + GH_TOKEN,
-      Accept: "application/vnd.github+json",
-      "content-type": "application/json",
-    },
-    body: JSON.stringify({
-      message: message || "Update tracker data",
-      content: utf8ToBase64(JSON.stringify(fullState, null, 2)),
-      branch: GH_DATA_BRANCH,
-      ...(sha ? { sha } : {}),
-    }),
+  const res = await fetch(WORKER_URL, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ state: fullState, message }),
   });
-  if (!res.ok) throw new Error("GitHub write failed: " + res.status + " " + (await res.text()));
+  if (!res.ok) throw new Error("write failed: " + res.status + " " + (await res.text()));
   return res.json();
 }
 const POLL_MS = 4000;
