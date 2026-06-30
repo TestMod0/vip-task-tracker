@@ -238,10 +238,14 @@ function cacheState(state) {
 }
 
 async function fetchLiveState() {
-  // raw.githubusercontent.com serves the file straight from the "data"
-  // branch, instantly, with no auth needed for a public repo. Cache-bust so
-  // we never see a stale CDN copy of an edit we just made.
-  const res = await fetch(RAW_URL + "?t=" + Date.now());
+  // Read through the Worker (which hits the GitHub Contents API) instead of
+  // raw.githubusercontent.com. raw.githubusercontent.com can lag a few
+  // seconds behind a commit that already landed -- not just CDN edge
+  // caching, but a real backend propagation delay -- which meant an edit
+  // could save successfully and then the very next poll would read the old
+  // value and visually "revert" it. The Contents API is the same source the
+  // write path uses, so a read here is always consistent with the latest write.
+  const res = await fetch(WORKER_URL + "?t=" + Date.now());
   if (res.status === 404) return {}; // file doesn't exist yet
   if (!res.ok) throw new Error("fetch failed: " + res.status);
   return await res.json();
@@ -285,7 +289,36 @@ function updateSyncBadge() {
 // screen as the user typed them -- otherwise a poll/refresh can visually
 // "revert" an edit that's just slow to sync, which is exactly what looked
 // like a lost update before.
+//
+// A second, shorter-lived pin covers edits that HAVE already been confirmed
+// saved: for a brief window after a successful write, keep showing the
+// value we just wrote even if a fetch comes back showing something else.
+// This is defense in depth against any remaining staleness in the read
+// path (a slow database replica, a delayed poll response, etc.) so a
+// confirmed save can never visually flicker back to an old value.
+const CONFIRMED_KEY = "vipTrackerConfirmedOverrides_v1";
+const CONFIRM_PIN_MS = 30000;
+let confirmedOverrides = (() => {
+  try { return JSON.parse(localStorage.getItem(CONFIRMED_KEY)) || {}; }
+  catch (e) { return {}; }
+})();
+function saveConfirmedOverrides() {
+  try { localStorage.setItem(CONFIRMED_KEY, JSON.stringify(confirmedOverrides)); } catch (e) {}
+}
+function pinConfirmed(id, field, value) {
+  confirmedOverrides[id + "::" + field] = { id, field, value, expiresAt: Date.now() + CONFIRM_PIN_MS };
+  saveConfirmedOverrides();
+}
 function applyPendingToState(s) {
+  const now = Date.now();
+  for (const key in confirmedOverrides) {
+    const e = confirmedOverrides[key];
+    if (!e) continue;
+    if (e.expiresAt < now) { delete confirmedOverrides[key]; continue; }
+    if (!s[e.id]) s[e.id] = {};
+    s[e.id][e.field] = e.value;
+  }
+  saveConfirmedOverrides();
   for (const key in pendingQueue) {
     const e = pendingQueue[key];
     if (!e) continue;
@@ -314,7 +347,9 @@ async function flushPendingQueue() {
     }
     await githubWriteState(merged, "Tracker edit");
     for (const key of keys) {
-      if (pendingQueue[key]) delete pendingQueue[key];
+      const entry = pendingQueue[key];
+      if (entry) pinConfirmed(entry.id, entry.field, entry.value);
+      delete pendingQueue[key];
     }
     savePendingQueue();
     updateSyncBadge();
