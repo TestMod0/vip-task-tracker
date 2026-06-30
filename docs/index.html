@@ -647,6 +647,19 @@ function attachRowHandlers() {
     };
     el.addEventListener("change", handler);
 
+    // "change" only fires on a clean blur. If the user clicks away in a way
+    // that doesn't fire it cleanly (fast click, autocomplete interaction
+    // with the assignee datalist, etc.), the edit could be silently lost.
+    // Back it up with a debounced "input" listener so the edit registers a
+    // moment after typing stops, regardless of how the field loses focus.
+    if (el.dataset.field === "assign") {
+      let debounceTimer = null;
+      el.addEventListener("input", () => {
+        if (debounceTimer) clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(handler, 600);
+      });
+    }
+
     if (el.tagName === "TEXTAREA") {
       // Enter commits the note (same as clicking away); Shift+Enter still
       // inserts a line break for multi-line notes.
