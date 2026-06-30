@@ -423,6 +423,15 @@ function updateField(id, field, value) {
   pushFieldUpdate(id, field, value);
 }
 
+function esc(s) {
+  return String(s ?? "").replace(/[&<>"']/g, (c) => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
+  }[c]));
+}
+function escAttr(s) {
+  return esc(s);
+}
+
 function ddClass(dd) {
   const n = Number(dd) || 0;
   if (n < 7) return "dd-low";
