@@ -1,0 +1,12 @@
+name = "vip-tracker-api"
+main = "src/index.js"
+compatibility_date = "2026-06-30"
+
+# Fill in the "id" below after running:
+#   npx wrangler kv namespace create vip-tracker-state
+# It will print something like:
+#   { binding = "VIP_TRACKER_KV", id = "abcd1234..." }
+# Paste that id into the line below, replacing REPLACE_WITH_KV_NAMESPACE_ID.
+kv_namespaces = [
+  { binding = "VIP_TRACKER_KV", id = "REPLACE_WITH_KV_NAMESPACE_ID" }
+]

@@ -1,0 +1,28 @@
+functionsDirectory = "C:\\Users\\SongTani\\OneDrive\\Desktop\\Tracker Data\\vip-tracker-live\\netlify\\functions"
+functionsDirectoryOrigin = "config"
+plugins = []
+headers = []
+redirects = []
+
+[build]
+publish = "C:\\Users\\SongTani\\OneDrive\\Desktop\\Tracker Data\\vip-tracker-live\\public"
+publishOrigin = "config"
+functions = "C:\\Users\\SongTani\\OneDrive\\Desktop\\Tracker Data\\vip-tracker-live\\netlify\\functions"
+
+[build.environment]
+
+[build.processing]
+
+[build.processing.css]
+
+[build.processing.html]
+
+[build.processing.images]
+
+[build.processing.js]
+
+[build.services]
+
+[functions]
+
+[functions."*"]
