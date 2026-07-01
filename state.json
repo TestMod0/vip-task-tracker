@@ -798,7 +798,8 @@
   },
   "Kok04": {
     "actionNeededHeight": 0,
-    "notesHeight": 0
+    "notesHeight": 0,
+    "actionNeeded": "- JBX Launch. FC 58"
   },
   "boybarman": {
     "actionNeededHeight": 0,
