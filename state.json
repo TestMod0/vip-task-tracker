@@ -927,6 +927,7 @@
     "actionNeededHeight": 0,
     "notesHeight": 0,
     "assign": "Giselle",
-    "actionNeeded": "- JBX Launch. FC 58"
+    "actionNeeded": "- JBX Launch. FC 58",
+    "done": true
   }
 }
