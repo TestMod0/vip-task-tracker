@@ -712,8 +712,7 @@
   },
   "Mm2611": {
     "actionNeededHeight": 0,
-    "notesHeight": 0,
-    "assign": "Gisell"
+    "notesHeight": 0
   },
   "Angus0613": {
     "actionNeededHeight": 0,
@@ -773,8 +772,7 @@
   },
   "yeongjieh": {
     "actionNeededHeight": 0,
-    "notesHeight": 0,
-    "assign": "Gisell"
+    "notesHeight": 0
   },
   "Ngjiayi02": {
     "actionNeededHeight": 0,
@@ -837,7 +835,8 @@
   },
   "kickzout": {
     "actionNeededHeight": 0,
-    "notesHeight": 0
+    "notesHeight": 0,
+    "assign": ""
   },
   "yiisheng": {
     "actionNeededHeight": 0,
@@ -856,8 +855,7 @@
   "entong": {
     "actionNeededHeight": 0,
     "notesHeight": 0,
-    "actionNeeded": "- Upgrade VIP 3\n- Offer WC promo or 30% Deposit bonus",
-    "assign": "Gisell"
+    "actionNeeded": "- Upgrade VIP 3\n- Offer WC promo or 30% Deposit bonus"
   },
   "YENMEI": {
     "actionNeededHeight": 0,
@@ -877,8 +875,7 @@
   },
   "simon7918": {
     "actionNeededHeight": 0,
-    "notesHeight": 0,
-    "assign": "G"
+    "notesHeight": 0
   },
   "jeepeng9999": {
     "actionNeededHeight": 0,
@@ -900,7 +897,8 @@
   },
   "jimyang2000": {
     "actionNeededHeight": 0,
-    "notesHeight": 0
+    "notesHeight": 0,
+    "assign": "G"
   },
   "jesbxd": {
     "actionNeededHeight": 0,
