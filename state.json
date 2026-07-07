@@ -803,8 +803,7 @@
   "jason0206": {
     "actionNeededHeight": 0,
     "notesHeight": 0,
-    "actionNeeded": "- Upgrade VIP 3",
-    "assign": ""
+    "actionNeeded": "- Upgrade VIP 3"
   },
   "Mgheng333": {
     "actionNeededHeight": 0,
@@ -821,7 +820,8 @@
   },
   "xiiaomex": {
     "actionNeededHeight": 0,
-    "notesHeight": 0
+    "notesHeight": 0,
+    "assign": ""
   },
   "hxwong57": {
     "actionNeededHeight": 0,
