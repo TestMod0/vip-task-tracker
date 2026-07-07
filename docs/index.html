@@ -412,7 +412,7 @@ function getRecord(seedRow) {
   const s = state[seedRow.id] || {};
   return {
     ...seedRow,
-    trials: seedRow.trials || [],
+    trials: (seedRow.trials || []).map(enrichTrial),
     trialProgress: s.trialProgress ?? "",
     actionNeeded: s.actionNeeded ?? seedRow.actionPlan ?? "",
     notes: s.notes ?? seedRow.notes ?? "",
@@ -427,9 +427,24 @@ function getRecord(seedRow) {
   };
 }
 
+function enrichTrial(t) {
+  const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  function fmtDate(s) {
+    if (!s) return "";
+    const d = new Date(s);
+    return MONTHS[d.getMonth()] + " " + d.getDate();
+  }
+  const statusShort = t.status === "ended" ? "Ended" : "Active";
+  const detailShort = t.tier || "";
+  const dateRangeShort = fmtDate(t.start) + " – " + fmtDate(t.end);
+  const completedShort = t.pct >= 100 ? "✓ Target met" : (t.status === "ended" && t.pct < 100 ? "✗ Not met" : "");
+  return { ...t, statusShort, detailShort, dateRangeShort, completedShort };
+}
+
 function trialStatusClass(status) {
   if (status === "Target met") return "met";
   if (status === "Trial ended - not met") return "failed";
+  if (status === "ended") return "failed";
   return "progress";
 }
 
