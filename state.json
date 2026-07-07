@@ -39,8 +39,7 @@
   },
   "alex3333": {
     "actionNeededHeight": 0,
-    "notesHeight": 0,
-    "assign": "Cecilia"
+    "notesHeight": 0
   },
   "kajun": {
     "actionNeededHeight": 0,
@@ -128,8 +127,7 @@
   },
   "gz0216": {
     "actionNeededHeight": 0,
-    "notesHeight": 0,
-    "assign": "Cecilia"
+    "notesHeight": 0
   },
   "lcj0301": {
     "actionNeededHeight": 0,
@@ -182,7 +180,8 @@
   },
   "akid": {
     "actionNeededHeight": 0,
-    "notesHeight": 0
+    "notesHeight": 0,
+    "assign": "Cecilia"
   },
   "Kajun04040": {
     "actionNeededHeight": 0,
@@ -194,7 +193,8 @@
   },
   "wins0312": {
     "actionNeededHeight": 0,
-    "notesHeight": 0
+    "notesHeight": 0,
+    "assign": "Cecilia"
   },
   "Khonest": {
     "actionNeededHeight": 0,
@@ -242,8 +242,7 @@
   },
   "elvinchen": {
     "actionNeededHeight": 0,
-    "notesHeight": 0,
-    "assign": "v"
+    "notesHeight": 0
   },
   "Zainulldin": {
     "actionNeededHeight": 0,
@@ -819,8 +818,7 @@
   },
   "KenGor": {
     "actionNeededHeight": 0,
-    "notesHeight": 0,
-    "assign": "Cecilia"
+    "notesHeight": 0
   },
   "aabbccd": {
     "actionNeededHeight": 0,
@@ -829,7 +827,7 @@
   "xiiaomex": {
     "actionNeededHeight": 0,
     "notesHeight": 0,
-    "assign": "Celine"
+    "assign": "Cecilia"
   },
   "hxwong57": {
     "actionNeededHeight": 0,
@@ -900,7 +898,8 @@
   },
   "tirazai": {
     "actionNeededHeight": 0,
-    "notesHeight": 0
+    "notesHeight": 0,
+    "assign": "Cecilia"
   },
   "shunjie": {
     "actionNeededHeight": 0,
@@ -993,9 +992,6 @@
   },
   "seng888888": {
     "assign": "Celine"
-  },
-  "ongong1987": {
-    "assign": "Cecilia"
   },
   "abc987": {
     "assign": "Cecilia"
