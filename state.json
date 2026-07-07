@@ -425,8 +425,7 @@
   },
   "Sunnyfoon": {
     "actionNeededHeight": 0,
-    "notesHeight": 0,
-    "assign": ""
+    "notesHeight": 0
   },
   "Ninety12": {
     "actionNeededHeight": 0,
@@ -455,7 +454,8 @@
   "HHT0314": {
     "actionNeededHeight": 0,
     "notesHeight": 0,
-    "actionNeeded": "- Upgrade VIP 2"
+    "actionNeeded": "- Upgrade VIP 2",
+    "assign": ""
   },
   "seng0312": {
     "actionNeededHeight": 0,
