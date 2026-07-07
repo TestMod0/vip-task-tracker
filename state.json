@@ -424,7 +424,8 @@
   },
   "jason0823": {
     "actionNeededHeight": 0,
-    "notesHeight": 0
+    "notesHeight": 0,
+    "assign": ""
   },
   "Sunnyfoon": {
     "actionNeededHeight": 0,
@@ -486,11 +487,13 @@
   "xiaojie1": {
     "actionNeededHeight": 0,
     "notesHeight": 0,
-    "actionNeeded": "- JBX Launch. FC 58"
+    "actionNeeded": "- JBX Launch. FC 58",
+    "assign": ""
   },
   "kidolee": {
     "actionNeededHeight": 0,
-    "notesHeight": 0
+    "notesHeight": 0,
+    "assign": ""
   },
   "JustinTeh98": {
     "actionNeededHeight": 0,
