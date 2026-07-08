@@ -898,7 +898,8 @@
   },
   "kickzout": {
     "actionNeededHeight": 0,
-    "notesHeight": 0
+    "notesHeight": 0,
+    "assign": ""
   },
   "yiisheng": {
     "actionNeededHeight": 0,
@@ -908,11 +909,12 @@
   "Kok04": {
     "actionNeededHeight": 0,
     "notesHeight": 0,
-    "actionNeeded": "- JBX Launch. FC 58"
+    "actionNeeded": ""
   },
   "boybarman": {
     "actionNeededHeight": 0,
-    "notesHeight": 0
+    "notesHeight": 0,
+    "assign": ""
   },
   "entong": {
     "actionNeededHeight": 0,
