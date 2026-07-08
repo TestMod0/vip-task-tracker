@@ -868,8 +868,7 @@
   },
   "aabbccd": {
     "actionNeededHeight": 0,
-    "notesHeight": 0,
-    "assign": ""
+    "notesHeight": 0
   },
   "xiiaomex": {
     "actionNeededHeight": 0,
@@ -921,7 +920,8 @@
   },
   "YENMEI": {
     "actionNeededHeight": 0,
-    "notesHeight": 0
+    "notesHeight": 0,
+    "assign": ""
   },
   "Sam0123": {
     "actionNeededHeight": 0,
