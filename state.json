@@ -888,7 +888,8 @@
   },
   "limjiale": {
     "actionNeededHeight": 0,
-    "notesHeight": 0
+    "notesHeight": 0,
+    "assign": ""
   },
   "Jiabao09": {
     "actionNeededHeight": 0,
@@ -920,8 +921,7 @@
   },
   "YENMEI": {
     "actionNeededHeight": 0,
-    "notesHeight": 0,
-    "assign": ""
+    "notesHeight": 0
   },
   "Sam0123": {
     "actionNeededHeight": 0,
