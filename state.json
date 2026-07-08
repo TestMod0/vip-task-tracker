@@ -868,7 +868,8 @@
   },
   "aabbccd": {
     "actionNeededHeight": 0,
-    "notesHeight": 0
+    "notesHeight": 0,
+    "assign": ""
   },
   "xiiaomex": {
     "actionNeededHeight": 0,
@@ -887,8 +888,7 @@
   },
   "limjiale": {
     "actionNeededHeight": 0,
-    "notesHeight": 0,
-    "assign": ""
+    "notesHeight": 0
   },
   "Jiabao09": {
     "actionNeededHeight": 0,
